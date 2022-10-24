@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  font-family: 'Roboto', sans-serif;
+
+  color: #000;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
