@@ -67,7 +67,7 @@ export function UniqueApartmentPage() {
     });
 
     setTimeout(() => {
-      navigate("/");
+      navigate("/home");
     }, 2000);
   }
 
