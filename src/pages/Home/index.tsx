@@ -21,10 +21,7 @@ export function HomePage() {
       <main id="apts_agender_container">
         <header className="apts_header">
           <h2>Locação</h2>
-          <p>
-            Sample text. Click to select the text box. Click again or double
-            click to start editing the text.
-          </p>
+          <p>Visualize nossas ofertas de imóveis</p>
         </header>
 
         <div className="apts_container">
