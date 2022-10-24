@@ -76,7 +76,7 @@ export function UniqueApartmentPage() {
       <main id="apts_agender_container">
         <header className="apts_header">
           <div className="go_back">
-            <Link to="/">&larr; Tela inicial</Link>
+            <Link to="/home">&larr; Tela inicial</Link>
           </div>
           <h2>Agendar</h2>
           <p>Agende sua visita agora mesmo</p>

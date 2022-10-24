@@ -7,9 +7,9 @@ export function Routers() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<HomePage />} path="/" />
+        <Route element={<HomePage />} path="/home" />
         <Route element={<UniqueApartmentPage />} path="/apt/:id" />
-        <Route element={<LoginPage />} path="/login" />
+        <Route element={<LoginPage />} path="/" />
       </Routes>
     </BrowserRouter>
   );

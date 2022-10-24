@@ -45,7 +45,7 @@ export function LoginPage() {
     });
 
     setTimeout(() => {
-      navigate("/");
+      navigate("/home");
     }, 2000);
   }
 
