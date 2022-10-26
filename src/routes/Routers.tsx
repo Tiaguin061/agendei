@@ -10,10 +10,10 @@ export function Routers() {
     <BrowserRouter>
       <Routes>
         <Route element={<HomePage />} path="/home" />
+        <Route element={<HomePage />} path="/" />
         <Route element={<UniqueApartmentPage />} path="/apt/:id" />
         <Route element={<ListAptsAgendersPage />} path="/apts-agenders" />
 
-        <Route element={<LoginPage />} path="/" />
         <Route element={<LoginPage />} path="/login" />
 
         <Route element={<RegisterUserPage />} path="/register" />
