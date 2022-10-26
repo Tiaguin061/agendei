@@ -1,39 +1,34 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { User, userAuthKey, usersListStorageKey } from "../../services/api";
-import { toast } from "react-toastify";
-import "./styles.scss";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { usersListStorageKey } from "../../services/api";
+import "./styles.scss";
 
-export function LoginPage() {
+export function RegisterUserPage() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
     id: `${new Date()}`,
     email: "",
     password: "",
+    name: "",
   });
 
-  useEffect(() => {
-    const isUserAuth = localStorage.getItem(userAuthKey);
+  function handleSignUp(e: any) {
+    e.preventDefault();
 
-    if (isUserAuth) {
-      toast("Você já está autenticado. Redicionando para tela inicial.", {
-        type: "info",
+    if (!user.email) {
+      return toast("Por favor, coloque o e-mail para criar a conta.", {
+        type: "error",
         style: {
           color: "#000",
         },
       });
-
-      navigate("/home");
     }
-  }, []);
 
-  function handleSignIn(e: any) {
-    e.preventDefault();
-
-    if (!user.email) {
-      return toast("Por favor, coloque o e-mail para entrar na conta.", {
+    if (!user.name) {
+      return toast("Por favor, coloque o nome para criar a conta.", {
         type: "error",
         style: {
           color: "#000",
@@ -42,7 +37,7 @@ export function LoginPage() {
     }
 
     if (!user.password) {
-      return toast("Por favor, coloque a senha para entrar na conta.", {
+      return toast("Por favor, coloque a senha para criar a conta.", {
         type: "error",
         style: {
           color: "#000",
@@ -52,34 +47,19 @@ export function LoginPage() {
 
     // Apenas uma simulação, mas aqui seria um envio para o backend e salvar no banco de dados. O mesmo para a locação.
 
-    let users = localStorage.getItem(usersListStorageKey);
+    const users = localStorage.getItem(usersListStorageKey);
 
-    let usersList: User[] = [];
+    let usersList = [];
 
-    if (users) {
-      usersList = JSON.parse(users);
+    if (!users) {
+      usersList = [user];
+    } else {
+      usersList = [...JSON.parse(users)];
 
-      const userExist = usersList.find((where) => {
-        return where.email === user.email;
-      });
+      const userExist = usersList.find((where) => where.email === user.email);
 
-      if (!userExist) {
-        return toast(
-          "Usuário com este e-mail não existe. Tente novamente ou crie uma conta",
-          {
-            type: "error",
-            style: {
-              color: "#000",
-            },
-          }
-        );
-      }
-
-      if (
-        userExist.password !== user.password ||
-        userExist.email !== user.email
-      ) {
-        return toast("E-mail ou senha incorreta. Tente novamente", {
+      if (userExist) {
+        return toast("Usuário com este e-mail já existe.", {
           type: "error",
           style: {
             color: "#000",
@@ -87,38 +67,30 @@ export function LoginPage() {
         });
       }
 
-      localStorage.setItem(userAuthKey, JSON.stringify(userExist));
-
-      toast("Login feito com sucesso!", {
-        type: "success",
-        style: {
-          color: "#000",
-        },
-      });
-
-      return setTimeout(() => {
-        navigate("/home");
-      }, 2000);
+      usersList = [...JSON.parse(users), user];
     }
 
-    return toast(
-      "Usuário com este e-mail não existe. Tente novamente ou crie uma conta",
-      {
-        type: "error",
-        style: {
-          color: "#000",
-        },
-      }
-    );
+    localStorage.setItem(usersListStorageKey, JSON.stringify(usersList));
+
+    toast("Criação de conta feito com sucesso!", {
+      type: "success",
+      style: {
+        color: "#000",
+      },
+    });
+
+    setTimeout(() => {
+      navigate("/home");
+    }, 2000);
   }
 
   return (
     <div className="login_container">
       <main>
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={handleSignUp}>
           <header>
             <h2 className="logo">@gendei</h2>
-            <h3>Faça login na plataforma</h3>
+            <h3>Crie uma conta na plataforma</h3>
           </header>
 
           <div className="form_content">
@@ -133,6 +105,22 @@ export function LoginPage() {
                       return {
                         ...prevState,
                         email: e.target.value,
+                      };
+                    })
+                  }
+                />
+              </div>
+
+              <div className="input_container">
+                <label htmlFor="input_name">Nome</label>
+                <input
+                  id="input_name"
+                  type="text"
+                  onChange={(e) =>
+                    setUser((prevState) => {
+                      return {
+                        ...prevState,
+                        name: e.target.value,
                       };
                     })
                   }
@@ -155,12 +143,12 @@ export function LoginPage() {
                 />
               </div>
             </div>
-            <button className="signIn_btn" type="submit">
-              Entrar na conta
+            <button className="SignUp_btn" type="submit">
+              Criar conta
             </button>
             <p className="redirect_to_register">
-              Não possuí uma conta?
-              <Link to="/register">Crie agora mesmo</Link>
+              Já possuí uma conta?
+              <Link to="/login">Entre agora mesmo</Link>
             </p>
           </div>
         </form>

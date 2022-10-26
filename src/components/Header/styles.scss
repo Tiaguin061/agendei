@@ -1,0 +1,39 @@
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 64px;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  .logo {
+    color: #f5d654;
+
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .header_content {
+    .logged_container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+
+      .signOut_btn {
+        background: #f5d654;
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+    }
+
+    .noLogged_container {
+      a {
+        background: #f5d654;
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+    }
+  }
+}

@@ -1,9 +1,11 @@
+import { Header } from "../../components/Header";
 import { apts } from "../../services/api";
 import "./styles.scss";
 
 export function HomePage() {
   return (
     <div className="home_container">
+      <Header />
       <div className="content">
         <div className="top_content">
           <h2 className="logo">@gendei</h2>

@@ -27,4 +27,12 @@ export const apts = [
 ];
 
 export const aptsAgendersStorageKey = "@agendei/apts";
-export const userStorageKey = "@agendei/user";
+export const usersListStorageKey = "@agendei/users-list";
+export const userAuthKey = "@agendei/user-auth";
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+}
