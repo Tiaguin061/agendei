@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { userAuthKey } from "../../services/api";
@@ -6,15 +6,10 @@ import { userAuthKey } from "../../services/api";
 import "./styles.scss";
 
 export function Header() {
-  const [userAuth, setUserAuth] = useState(localStorage.getItem(userAuthKey));
-
-  useEffect(() => {
-    if (userAuth) {
-      setUserAuth(JSON.parse(userAuth));
-    } else {
-      setUserAuth(null);
-    }
-  }, []);
+  const userStorage = localStorage.getItem(userAuthKey);
+  const [userAuth, setUserAuth] = useState(
+    userStorage ? JSON.parse(userStorage) : null
+  );
 
   async function handleSignOut() {
     localStorage.removeItem(userAuthKey);
@@ -36,11 +31,14 @@ export function Header() {
         <div className="header_content">
           {userAuth ? (
             <div className="logged_container">
+              <Link to="/apts-agenders" className="agenders-link">
+                Agendamentos marcados
+              </Link>
               <button className="signOut_btn" onClick={handleSignOut}>
                 Sair
               </button>
               <div>
-                <span>tiaguin</span>
+                <span>{userAuth?.name}</span>
               </div>
             </div>
           ) : (

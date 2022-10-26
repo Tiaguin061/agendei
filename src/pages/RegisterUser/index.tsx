@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { usersListStorageKey } from "../../services/api";
+import { userAuthKey, usersListStorageKey } from "../../services/api";
 import "./styles.scss";
 
 export function RegisterUserPage() {
@@ -71,6 +71,8 @@ export function RegisterUserPage() {
     }
 
     localStorage.setItem(usersListStorageKey, JSON.stringify(usersList));
+
+    localStorage.setItem(userAuthKey, JSON.stringify(user));
 
     toast("Criação de conta feito com sucesso!", {
       type: "success",

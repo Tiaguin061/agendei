@@ -20,7 +20,6 @@ export function ListAptsAgendersPage() {
   useEffect(() => {
     const storage = aptsStorage ? (JSON.parse(aptsStorage) as Apt[]) : null;
     if (storage) {
-      console.log(storage);
       setAptsAgenders(storage);
     }
   }, []);
@@ -33,7 +32,7 @@ export function ListAptsAgendersPage() {
           <div className="go_back">
             <Link to="/home">&larr; Tela inicial</Link>
           </div>
-          <h2>Agendamentos marcados</h2>
+          <h2>Agendamentos marcados ({aptsAgenders?.length})</h2>
         </header>
 
         <div className="apts_container">
