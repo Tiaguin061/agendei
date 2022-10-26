@@ -32,7 +32,7 @@ export function ListAptsAgendersPage() {
           <div className="go_back">
             <Link to="/home">&larr; Tela inicial</Link>
           </div>
-          <h2>Agendamentos marcados ({aptsAgenders?.length})</h2>
+          <h2>Agendamentos marcados ({aptsAgenders?.length || 0})</h2>
         </header>
 
         <div className="apts_container">
