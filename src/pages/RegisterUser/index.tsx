@@ -85,7 +85,7 @@ export function RegisterUserPage() {
   }
 
   return (
-    <div className="login_container">
+    <div className="register_container">
       <main>
         <form onSubmit={handleSignUp}>
           <header>
@@ -143,7 +143,7 @@ export function RegisterUserPage() {
                 />
               </div>
             </div>
-            <button className="SignUp_btn" type="submit">
+            <button className="signUp_btn" type="submit">
               Criar conta
             </button>
             <p className="redirect_to_register">

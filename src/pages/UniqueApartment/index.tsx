@@ -26,7 +26,7 @@ export function UniqueApartmentPage() {
 
   useEffect(() => {
     if (!foundApt) {
-      navigate("/");
+      navigate("/home");
     }
   }, []);
 
@@ -34,6 +34,7 @@ export function UniqueApartmentPage() {
     id: foundApt?.id,
     date: "",
     hour: "",
+    image: foundApt?.image,
   });
 
   function agenderApt(e: any) {

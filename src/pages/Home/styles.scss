@@ -15,7 +15,7 @@
   .top_content {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 64px 0;
+    padding: 64px 32px;
 
     .logo {
       color: #f5d654;
@@ -64,6 +64,7 @@
     margin: 64px auto;
     padding-top: 32px;
     max-width: 1480px;
+    padding: 0 32px;
 
     .apts_header {
       text-align: center;
@@ -100,6 +101,8 @@
 
         img {
           border-radius: 8px 8px 0 0;
+          width: 100%;
+          max-width: max-content;
         }
 
         .agender_btn {

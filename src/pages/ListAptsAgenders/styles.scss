@@ -1,0 +1,109 @@
+.unique_apt_container {
+  main {
+    margin: 64px auto;
+    padding-top: 32px;
+    max-width: 1480px;
+    padding: 0 32px;
+
+    .apts_header {
+      text-align: center;
+
+      .go_back {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        a {
+          color: rgb(57, 57, 57);
+          padding: 12px 32px;
+          margin: 16px 0 0 16px;
+          background: #c6c6c6;
+          
+          font-size: 1rem;
+          text-transform: uppercase;
+          font-weight: 700;
+          letter-spacing: 2px;
+  
+          border: none;
+          border-radius: 99px;
+          transition: all 0.2s;
+          display: inline-block;
+  
+          &:hover {
+            filter:brightness(90%);
+          }
+        }
+      }
+
+      h2 {
+        font-weight: 400;
+        font-size: 2.25rem;
+        line-height: 1.1;
+
+        margin-top: 16px;
+
+        color: #000;
+      }
+    }
+
+    .apts_container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+
+      margin-top: 32px;
+
+      .apt {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        background: #191919;
+        border-radius: 8px;
+
+        img {
+          border-radius: 8px 8px 0 0;
+          width: 100%;
+          max-width: max-content;
+        }
+
+        .agender_text {
+          color: #fff;
+          font-size: 1.5rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          padding-bottom: 8px;
+          text-align: center;
+
+          border-top: 1px solid #ccc;
+
+          width: 100%;
+          padding: 16px 0;
+        }
+
+        .apt_info_content {
+          display: flex;
+          justify-content: space-evenly;
+          padding: 8px 0 24px;
+          width: 100%;
+
+          .apt_info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            
+            strong {
+              color: #fff;
+            }
+
+            span {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
