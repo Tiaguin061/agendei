@@ -51,17 +51,18 @@
     }
 
     .apts_container {
-      display: flex;
+      display: grid;
       flex-wrap: wrap;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
 
       margin-top: 32px;
 
       .apt {
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
+        justify-content: space-between;
 
         background: #191919;
         border-radius: 8px;
@@ -70,6 +71,7 @@
           border-radius: 8px 8px 0 0;
           width: 100%;
           max-width: max-content;
+          object-fit: cover;
         }
 
         .agender_text {
@@ -107,6 +109,15 @@
             }
           }
         }
+      }
+
+      @media(max-width: 980px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media(max-width: 668px) {
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
       }
     }
   }

@@ -31,11 +31,11 @@ export function UniqueApartmentPage() {
   }, []);
 
   const [aptAgender, setAptAgender] = useState({
-    id: foundApt?.id,
+    ...foundApt,
     date: "",
     hour: "",
-    image: foundApt?.image,
   });
+  console.log(aptAgender);
 
   function agenderApt(e: any) {
     e.preventDefault();
