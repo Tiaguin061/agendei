@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import emailJs from "emailjs-com";
 import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,15 +12,11 @@ import "./styles.scss";
 export function UniqueApartmentPage() {
   const params = useParams();
   const navigate = useNavigate();
-  const [userAuth, setUserAuth] = useState(localStorage.getItem(userAuthKey));
 
-  useEffect(() => {
-    if (userAuth) {
-      setUserAuth(JSON.parse(userAuth));
-    } else {
-      setUserAuth(null);
-    }
-  }, []);
+  const userStorage = localStorage.getItem(userAuthKey);
+  const [userAuth, setUserAuth] = useState(
+    userStorage ? JSON.parse(userStorage) : null
+  );
 
   const id = params.id;
   const foundApt = apts.find((where) => where.id === id);
@@ -35,9 +32,8 @@ export function UniqueApartmentPage() {
     date: "",
     hour: "",
   });
-  console.log(aptAgender);
 
-  function agenderApt(e: any) {
+  async function agenderApt(e: any) {
     e.preventDefault();
 
     if (!userAuth) {
@@ -85,6 +81,32 @@ export function UniqueApartmentPage() {
         color: "#000",
       },
     });
+
+    const emailJsServiceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const emailJsTemplateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const emailJsUserID = import.meta.env.VITE_EMAILJS_USER_ID;
+
+    if (userAuth && emailJsServiceID && emailJsTemplateID && emailJsUserID) {
+      await emailJs.send(
+        emailJsServiceID,
+        emailJsTemplateID,
+        {
+          assunto: "Agendamento concluído",
+          name: userAuth.name,
+          to: userAuth.email,
+          message: `Estamos enviando este e-mail para que você saiba que foi agendado a visita dia ${aptAgender.date} às ${aptAgender.hour}`,
+          from_name: "@gendei",
+        },
+        emailJsUserID
+      );
+
+      toast(`Um e-mail foi enviado para ${userAuth.email}`, {
+        type: "success",
+        style: {
+          color: "#000",
+        },
+      });
+    }
 
     setTimeout(() => {
       navigate("/home");
