@@ -6,4 +6,4 @@
 
 #### 3- Rode o comando -> npm install
 
-#### 2- Após instalar os pacotes necessários, rode o comando -> npm run dev
+#### 4- Após instalar os pacotes necessários, rode o comando -> npm run dev
